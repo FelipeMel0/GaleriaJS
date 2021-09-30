@@ -58,9 +58,9 @@ const criarSlide = (urlImagem, indice, arr) => {
     slide.innerHTML = `
     <div class="imagem-container">
         <a href="#" class="fechar">&#128473;</a>
-        <a href="${idAnterior}" class="navegacao anterior">&#171;</a>
+        <a href="#${idAnterior}" class="navegacao anterior">&#171;</a>
         <img src="${urlImagem}" alt="">
-        <a href="${idProximo}" class="navegacao proximo">&#187;</a>
+        <a href="#${idProximo}" class="navegacao proximo">&#187;</a>
     </div>
 `
     container.appendChild(slide)
