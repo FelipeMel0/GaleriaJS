@@ -1,21 +1,37 @@
 "use strict"
 
-const imagens = [
-    "./img/Aranha de Ferro.jpg",
-    "./img/Homem-Aranha 2099.jpg",
-    "./img/Homem-Aranha Aranhaverso.png",
-    "./img/Homem-Aranha PS4.jpg",
-    "./img/Homem-Aranha clássico.jpg",
-    "./img/Homem-Aranha noir.jpg",
-    "./img/Tobey Aranha.png",
-    "./img/Tom Aranha.jpg"
-]
+const limpar = (elemento) => {
+    while (elemento.firstChild){
+        elemento.removeChild(elemento.lastChild)
+    }
+}
 
-const limparId = (urlImagem) => urlImagem
-    .split("/")[2]
-    .split(".")[0]
-    .replace(" ", "-")
-    .toLowerCase()
+const pegarImagens = (raca) => fetch(`https://dog.ceo/api/breed/${raca}/images`)
+
+// const pegarImagens = () => fetch(`https://dog.ceo/api/breed/doberman/images`)
+
+const procurarImagens = async (evento) => {
+
+    if (evento.key === 'Enter') {
+        const raca = evento.target.value
+        const imagensResponse = await pegarImagens(raca)
+        const imagens = await imagensResponse.json()
+
+        limpar(document.querySelector(".galeria-container"))
+        limpar(document.querySelector(".slide-container"))
+
+        carregarImagens(imagens.message)
+        carregarSlides(imagens.message)
+
+    }
+
+}
+
+const limparId = (urlImagem) => {
+    const posBarra = urlImagem.lastIndexOf('/') + 1
+    const posPonto = urlImagem.lastIndexOf('.')
+    return urlImagem.substring(posBarra, posPonto)
+}
 
 const criarItem = (urlImagem) => {
     const container = document.querySelector(".galeria-container")
@@ -31,7 +47,7 @@ const criarItem = (urlImagem) => {
     container.appendChild(novoLink)
 }
 
-const carregarImagens = () => imagens.forEach(criarItem)
+const carregarImagens = (imagens) => imagens.forEach(criarItem)
 
 const criarSlide = (urlImagem, indice, arr) => {
     const container = document.querySelector(".slide-container")
@@ -39,7 +55,7 @@ const criarSlide = (urlImagem, indice, arr) => {
     slide.classList.add("slide")
     slide.id = limparId(urlImagem)
 
-    const indiceAnterior = indice > 0 ? indice - 1 : arr.length - 1 
+    const indiceAnterior = indice > 0 ? indice - 1 : arr.length - 1
     const idAnterior = limparId(arr[indiceAnterior])
 
     const indiceProximo = indice < arr.length - 1 ? indice + 1 : 0
@@ -53,7 +69,6 @@ const criarSlide = (urlImagem, indice, arr) => {
     // else{
     //     indiceAnterior = arr.length - 1
     // }
-    
 
     slide.innerHTML = `
     <div class="imagem-container">
@@ -66,26 +81,12 @@ const criarSlide = (urlImagem, indice, arr) => {
     container.appendChild(slide)
 }
 
-const carregarSlides = () => imagens.forEach(criarSlide)
+const carregarSlides = (imagens) => imagens.forEach(criarSlide)
 
-carregarImagens()
+// procurarImagens()
 
-carregarSlides()
+document.querySelector(".pesquisa-container input").addEventListener('keypress', procurarImagens)
 
-// let imagens = document.querySelectorAll('.galeria-container')
+// carregarImagens()
 
-// const anterior = () =>{
-//     const container = document.querySelector(".galeria-container")
-//     container.appendChild(imagens[0])
-//     imagens = document.querySelectorAll(".galeria-container")
-// }
-
-// const proximo = () =>{
-//     const container = document.querySelector(".galeria-container")
-//     const ultimoItem = imagens[imagens.length - 1]
-//     container.insertBefore(ultimoItem, imagens[0])
-//     imagens = document.querySelectorAll(".galeria-container")
-// }
-
-
-
+// carregarSlides()

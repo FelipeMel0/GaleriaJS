@@ -1,11 +1,11 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'PT Sans', sans-serif;
 }
 
-body{
+body {
     width: 100vw;
     height: 100vh;
     display: flex;
@@ -13,24 +13,24 @@ body{
     background-color: rgb(180, 180, 180);
 }
 
-header{
+header {
     display: grid;
     place-content: center;
     height: 100px;
 }
 
-main{
+main {
     flex-grow: 1;
 }
 
-.galeria-container{
+.galeria-container {
     display: flex;
     gap: 15px;
     flex-wrap: wrap;
     padding: 15px;
 }
 
-.galeria-itens{
+.galeria-itens {
     /* background-color: hotpink; */
     background-color: rgb(255, 255, 255);
     width: 340px;
@@ -40,24 +40,23 @@ main{
     border: 10px solid rgb(255, 255, 255);
 }
 
-.galeria-itens img{
+.galeria-itens img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: all .1s ease-in-out;
-    
 }
 
-.galeria-itens:hover{
+.galeria-itens:hover {
     box-shadow: 10px 10px 20px rgb(0, 0, 0);
 }
 
-.galeria-itens:hover img{
+.galeria-itens:hover img {
     /* transform: scale(1.3) rotate(10deg); */
     transform: scale(1.1);
 }
 
-.imagem-container{
+.imagem-container {
     height: 90%;
     width: 90%;
     position: relative;
@@ -65,7 +64,7 @@ main{
     align-items: center;
 }
 
-.slide{
+.slide {
     position: fixed;
     top: 0;
     left: 0;
@@ -79,12 +78,12 @@ main{
     transition: opacity .5s ease-in-out;
 }
 
-.slide:target{
+.slide:target {
     z-index: 999;
     opacity: 100%;
 }
 
-.slide .fechar{
+.slide .fechar {
     position: absolute;
     color: rgb(255, 255, 255);
     user-select: none;
@@ -102,11 +101,11 @@ main{
     z-index: 4;
 }
 
-.slide .fechar:hover{
+.slide .fechar:hover {
     background-color: rgb(255, 60, 0);
 }
 
-.slide .navegacao{
+.slide .navegacao {
     position: absolute;
     background-color: tan;
     color: white;
@@ -122,28 +121,26 @@ main{
     transition: all .1s linear;
 }
 
-.slide .navegacao:hover{
+.slide .navegacao:hover {
     background-color: rgba(78, 78, 78, 0.664);
 }
 
-.slide .anterior{
+.slide .anterior {
     left: 0;
 }
 
-.slide .proximo{
+.slide .proximo {
     right: 0;
 }
 
-
-.slide img{
+.slide img {
     width: 100%;
     height: 100%;
 }
 
-footer{
+footer {
     height: 50px;
     display: flex;
     align-items: center;
     justify-content: center;
 }
-
